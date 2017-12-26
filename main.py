@@ -1,18 +1,8 @@
 import json
+import copy
 
 
-def bubbleSort(list):
-    for i in range(len(list)):
-        for j in range(i+1, len(list)):
-#             print(i,j)
-            if(list[i]>list[j]):
-                a = list[i]
-                list[i] = list[j]
-                list[j] = a
-    return list
-        
-
-if __name__ == "__main__":
+def test():
     print(bubbleSort([1,2,7,4,6]))
     for i in range(1,10):
         print('{0:2d} {1:3d} {2:4d}'.format(i, i*i, i*i*i))
@@ -26,4 +16,20 @@ if __name__ == "__main__":
     with open('log', 'r') as f:
         a = json.load(f)
     print(json.dumps(a))
+    
+def test2(list):
+    #list = [1,2,3]
+    list[1] = 2
+    list[2] = 3
+    list[3][0] = 4
+    print("in -", list)
+    #return list
+
+if __name__ == "__main__":
+    test_bubbleSort()
+    list = [1,1,1, [1]]
+    print("bef -", list)
+    test2(list)
+    print("aft -", list)
+    
     
