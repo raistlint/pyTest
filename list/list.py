@@ -35,11 +35,9 @@ class myList(object):
                 re.append(self.data[ia])
                 ia += 1
         if ia < len(self.data):
-            for item in self.data[ia:]:
-                re.append(item)
+            re.extend(self.data[ia:])
         if ib < len(lb):
-            for item in lb[ib:]:
-                re.append(item)
+            re.extend(lb[ib:])
         return re
     
 if __name__ == "__main__":
@@ -47,3 +45,4 @@ if __name__ == "__main__":
     li = ['tong',3,2]
     a.display()
     print(a.merge(li))
+    a.display()
