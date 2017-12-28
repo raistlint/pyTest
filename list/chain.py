@@ -3,7 +3,6 @@ Created on 20171227
 
 @author: Titan
 '''
-from pip.utils.outdated import SELFCHECK_DATE_FMT
 
 class lNode(object):
     def __init__(self, value, p=None):
@@ -41,7 +40,7 @@ class myChain(object):
             self.head = n
         else:
             p = self.head
-            for i in range(idx-1):
+            for _ in range(idx-1):
                 p = p.next
             n.next = p.next
             p.next = n
@@ -65,7 +64,7 @@ class myChain(object):
         if idx>=self.len or idx <0:
             return None
         p=self.head
-        for i in range(idx):
+        for _ in range(idx):
             p = p.next
         return p.data
     
