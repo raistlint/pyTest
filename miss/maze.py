@@ -17,16 +17,16 @@ class location(object):
         return False
     def __ne__(self, a):
         return not self == a
-    def __add__(self, dir):
-        if dir == 0:
+    def __add__(self, di):
+        if di == 0:
             return location(self.x, self.y)
-        elif dir == 1:
+        elif di == 1:
             return location(self.x+1, self.y)
-        elif dir == 2:
+        elif di == 2:
             return location(self.x, self.y+1)
-        elif dir == 3:
+        elif di == 3:
             return location(self.x-1, self.y)
-        elif dir == 4:
+        elif di == 4:
             return location(self.x, self.y-1)
     def __sub__(self, pos):
         if self == pos:
@@ -118,15 +118,15 @@ class myMap(object):
     
     def findOut(self):
         cur = self.now()
-        dir = 0
+        di = 0
         while cur != self.exit:
             ne = None
             la = None
-            for i in range(dir+1, 5):
+            for i in range(di+1, 5):
                 ne = self.now() +i
                 if self.move(ne):
                     cur = self.now()
-                    dir = 0
+                    di = 0
                     break
             if cur != ne:
                 la = self.back()
@@ -134,7 +134,7 @@ class myMap(object):
                     print("back to the entry!")
                     break
                 cur = self.now()
-                dir = la - self.now() 
+                di = la - self.now() 
 #             self.display()
         if cur == self.exit:
             return True
@@ -142,7 +142,7 @@ class myMap(object):
 
         
 if __name__ == "__main__":
-    m = myMap(8)
+    m = myMap(20)
     m.display()
     print(m.findOut())
     m.display()
