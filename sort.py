@@ -21,14 +21,28 @@ def test_bubbleSort():
 
 # quick sort
 def partition(list, s, e):
-    pass
+    if s>e: 
+        return
+    mark = list[s]
+    i = s +1
+    j = e
+    while i<j:
+        while i<j and list[j] > mark:
+            j -= 1
+        while i<j and list[i] < mark:
+            i += 1
+        if i<j:
+            (list[i], list[j]) = (list[j], list[i])
+    (list[s], list[i]) = (list[i], list[s])
+    return i
+    
 def quickDo(list, start, end):
     if start<end:
         p = partition(list,start, end)
         quickDo(list, start, p-1)
         quickDo(list, p+1, end)
 def sortQuick(list):
-    quickDo(list, 0, len(list))
+    quickDo(list, 0, len(list)-1)
     
     
 def random_list(start, stop, length):
@@ -46,7 +60,7 @@ def test_sort(f):
     for _ in range(10):
         start = 0
         end = 100
-        length = 20
+        length = 5
         a = random_list(start, end, length)
         b = copy.copy(a)
         org = copy.copy(a)
@@ -66,5 +80,5 @@ def test_sort(f):
     
 if __name__ == "__main__":
 #     test_bubbleSort()
-    test_sort(bubbleSort)
+    test_sort(sortQuick)
     print("last line")
