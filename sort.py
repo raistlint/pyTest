@@ -24,12 +24,12 @@ def partition(list, s, e):
     if s>e: 
         return
     mark = list[s]
-    i = s +1
+    i = s
     j = e
     while i<j:
-        while i<j and list[j] > mark:
+        while i<j and list[j] >= mark:
             j -= 1
-        while i<j and list[i] < mark:
+        while i<j and list[i] <= mark:
             i += 1
         if i<j:
             (list[i], list[j]) = (list[j], list[i])
@@ -43,7 +43,23 @@ def quickDo(list, start, end):
         quickDo(list, p+1, end)
 def sortQuick(list):
     quickDo(list, 0, len(list)-1)
+#     quick_sort(list, 0, len(list)-1)
     
+def quick_sort(array, l, r):  
+    if l < r:  
+        q = partition2(array, l, r)  
+        quick_sort(array, l, q - 1)  
+        quick_sort(array, q + 1, r)  
+  
+def partition2(array, l, r):  
+    x = array[r]  
+    i = l - 1  
+    for j in range(l, r):  
+        if array[j] <= x:  
+            i += 1  
+            array[i], array[j] = array[j], array[i]  
+    array[i + 1], array[r] = array[r], array[i+1]  
+    return i + 1  
     
 def random_list(start, stop, length):
     re = []
