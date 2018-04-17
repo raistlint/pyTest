@@ -76,7 +76,7 @@ def test_sort(f):
     for _ in range(10):
         start = 0
         end = 100
-        length = 5
+        length = 20
         a = random_list(start, end, length)
         b = copy.copy(a)
         org = copy.copy(a)
