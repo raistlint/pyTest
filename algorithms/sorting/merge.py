@@ -34,6 +34,8 @@ def merge(A,p,q,r):
             j+=1
             
 def merge2(A,p,q,r):
+    """ exersize 2.3-2
+    """
     n1 = q-p+1
     n2 = r-q
     L = copy.copy(A[p:q+1])

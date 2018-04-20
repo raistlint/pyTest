@@ -33,6 +33,20 @@ def addBinary(A,B):
     c.insert(0,carry)
     return c
 
+def insertionSortRecursive(A, k=None):
+    """ exercise 2.3-4
+    """
+    if(k == None):
+        k=len(A)
+    if k>1:
+        insertionSortRecursive(A, k-1)
+        tmp = A[k-1]
+        i=k-2
+        while i>=0 and A[i] > tmp:
+            A[i+1] = A[i]
+            i-=1
+        A[i+1] = tmp
+
 ########################
 # Test section
 
@@ -43,7 +57,8 @@ def abs(a):
 
 class TestFun(unittest.TestCase):
     def setUp(self):
-        self.f = insertionSort
+#         self.f = insertionSort
+        self.f = insertionSortRecursive
         self.fd = insertionSortDecrease
     def tearDown(self):
         pass
