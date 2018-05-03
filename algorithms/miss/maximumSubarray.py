@@ -54,7 +54,9 @@ def findMaximumBrute(A):
                 r = j
     return (l,r,max)
 
-def findWeb(A):
+def findMaximumDyn(A):
+    """ exercise 4.1-5
+    """
     max = -9999
     sum = 0
     for i in range(len(A)):
@@ -65,6 +67,23 @@ def findWeb(A):
         if sum >max:
             max = sum
     return max
+
+def findMaximumLinear(A):
+    """ exercise 4.1-5
+    """
+    max = -9999
+    sum = 0
+    l = r = cur =0
+    for i in range(len(A)):
+        sum += A[i]
+        if sum > max:
+            max = sum
+            l = cur
+            r = i
+        if sum <0:
+            sum = 0
+            cur = i+1
+    return (l,r,max)
     
 ########################
 # Test section
@@ -73,22 +92,23 @@ class TestFunSelection(unittest.TestCase):
     def setUp(self):
 #         self.f = findMaximum
 #         self.f = findMaximumBrute
-        self.f = findWeb
+        self.f = findMaximumLinear
+        self.f2 = findMaximumDyn
     def tearDown(self):
         pass
     
-    def test_foo(self):
+    def test_f2(self):
         a = [-1,2,4,-7,10]
-        self.assertEqual(self.f(a), 10)
+        self.assertEqual(self.f2(a), 10)
         a = [-1,2,4,-5,10, -5]
-        self.assertEqual(self.f(a), 11)
-#     def test_fun(self):
-#         a = [x for x in range(10)]
-#         self.assertTupleEqual(self.f(a), (1,9,45), "0-9 case")
-#         a[3] = -10
-#         self.assertTupleEqual(self.f(a), (4,9,39), "4-9 case")
-#         a = [1, -4, 3, -4]
-#         self.assertTupleEqual(self.f(a), (2,2,3), "normal case")
-#         a = [-x for x in range(10)]
-#         self.assertTupleEqual(self.f(a), (0,0,0), "0- -9 case")
+        self.assertEqual(self.f2(a), 11)
+    def test_fun(self):
+        a = [x for x in range(10)]
+        self.assertTupleEqual(self.f(a), (0,9,45), "0-9 case")
+        a[3] = -10
+        self.assertTupleEqual(self.f(a), (4,9,39), "4-9 case")
+        a = [1, -4, 3, -4]
+        self.assertTupleEqual(self.f(a), (2,2,3), "normal case")
+        a = [-x for x in range(10)]
+        self.assertTupleEqual(self.f(a), (0,0,0), "0- -9 case")
         
